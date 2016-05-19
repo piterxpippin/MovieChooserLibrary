@@ -21,5 +21,6 @@ public class Main {
         //elasticSearchMovieSource.getMoviesWithGivenGenreAndMinimumNumberOfRatings(MovieType.DRAMA,50,0,50);
         List<Movie> moviesWithGivenGenreAndAverageRatingStratingFrom = elasticSearchMovieSource.getMoviesWithGivenGenreAndAverageRatingStratingFrom(MovieType.DRAMA, 0.0f, 0, 50, 50);
         System.out.print(moviesWithGivenGenreAndAverageRatingStratingFrom);
+        
     }
 }
