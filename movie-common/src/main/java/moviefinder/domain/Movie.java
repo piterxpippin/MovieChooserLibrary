@@ -1,11 +1,12 @@
 package moviefinder.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Created by andrzej on 20.04.2016.
  */
-public class Movie {
+public class Movie implements Serializable {
 
 
     private final long movieId;
