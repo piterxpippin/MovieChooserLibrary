@@ -15,6 +15,11 @@ public class Main {
     public static void main(String[] args) {
 
         ElasticSearchMovieSource elasticSearchMovieSource= new ElasticSearchMovieSource("localhost",9300);
-        
+
+
+        //List<Movie> moviesWithGivenGenreSortedByNumberOfVotes = elasticSearchMovieSource.getMoviesWithGivenGenreSortedByNumberOfVotes(MovieType.DRAMA, 0, 0, 50);
+        //elasticSearchMovieSource.getMoviesWithGivenGenreAndMinimumNumberOfRatings(MovieType.DRAMA,50,0,50);
+        List<Movie> moviesWithGivenGenreAndAverageRatingStratingFrom = elasticSearchMovieSource.getMoviesWithGivenGenreAndAverageRatingStratingFrom(MovieType.DRAMA, 0.0f, 0, 50, 50);
+        System.out.print(moviesWithGivenGenreAndAverageRatingStratingFrom);
     }
 }

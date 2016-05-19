@@ -3,6 +3,7 @@
 target/
 .idea
 moviefinder.iml
+movie-dao/movie-dao.iml
 
 pom.xml.tag
 pom.xml.releaseBackup

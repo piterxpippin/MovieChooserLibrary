@@ -19,6 +19,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -66,9 +67,14 @@ public class ElasticSearchMovieSource implements MovieSource {
             hits.getScore();
             long id = Long.parseLong(Iterables.getOnlyElement(fields.get("id").getValues()).toString());
             String title = Iterables.getOnlyElement(fields.get("title").getValues()).toString();
-            Set<MovieType> types = fields.get("genres").getValues().stream().map((Object val) -> MovieType.valueOf(val.toString().replace('-','_').toUpperCase())).collect(Collectors.toSet());
+            Set<MovieType> types = new HashSet<MovieType>();
+            for (Object val: fields.get("genres").getValues()){
+                types.add(MovieType.valueOf(val.toString().replace('-','_').toUpperCase()));
+            }
+
 
             Movie movie = new Movie(types,hits.getScore(),id,title);
+            result.add(movie);
 
 
         }

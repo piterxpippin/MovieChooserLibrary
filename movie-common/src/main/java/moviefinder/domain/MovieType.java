@@ -22,7 +22,8 @@ public enum MovieType {
     ANIMATION,
     CHILDREN,
     MUSICAL,
-    HORROR
+    HORROR,
+    DOCUMENTARY
 
 
 
