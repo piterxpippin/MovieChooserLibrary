@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 
 /**
  * Created by andrzej on 20.04.2016.
@@ -73,7 +72,9 @@ public class ElasticSearchMovieSource implements MovieSource {
             }
 
 
-            Movie movie = new Movie(types,hits.getScore(),id,title);
+            long tmdbId=Long.parseLong(Iterables.getOnlyElement(fields.get("tmdbId").getValues()).toString());
+            long imdbId=Long.parseLong(Iterables.getOnlyElement(fields.get("imdbId").getValues()).toString());;
+            Movie movie = new Movie(types,hits.getScore(),id,title,imdbId, tmdbId);
             result.add(movie);
 
 
@@ -88,7 +89,7 @@ public class ElasticSearchMovieSource implements MovieSource {
                             .must(QueryBuilders.hasChildQuery("rating", QueryBuilders.functionScoreQuery().add(new FieldValueFactorFunctionBuilder("value").factor(1.0f)))
                                     .minChildren(numberOfRatings).scoreMode("avg").queryName("value"))
                             .must(QueryBuilders.matchQuery("genres", Strings.toCamelCase(movieTypes.toString())).boost(0))
-                    ).addField("title").addField("genres").addField("id").setFrom(page * itemsPerPage).setSize(itemsPerPage).setTypes("movie")
+                    ).addField("title").addField("tmdbId").addField("imdbId").addField("genres").addField("id").setFrom(page * itemsPerPage).setSize(itemsPerPage).setTypes("movie")
                     .execute().get();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -105,7 +106,7 @@ public class ElasticSearchMovieSource implements MovieSource {
                             .must(QueryBuilders.hasChildQuery("rating", QueryBuilders.matchAllQuery())
                                     .minChildren(numberOfRatings).scoreMode("sum").queryName("value"))
                             .must(QueryBuilders.matchQuery("genres", Strings.toCamelCase(movieTypes.toString())).boost(0))
-                    ).addField("title").addField("genres").addField("id").setFrom(page * itemsPerPage).setSize(itemsPerPage).setTypes("movie")
+                    ).addField("title").addField("tmdbId").addField("imdbId").addField("genres").addField("id").setFrom(page * itemsPerPage).setSize(itemsPerPage).setTypes("movie")
                     .execute().get();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -137,7 +138,7 @@ public class ElasticSearchMovieSource implements MovieSource {
                             .must(QueryBuilders.hasChildQuery("rating", QueryBuilders.functionScoreQuery().add(new FieldValueFactorFunctionBuilder("value").factor(1.0f)))
                                     .minChildren(numberOfRatings).scoreMode("avg").queryName("value"))
                             .must(QueryBuilders.matchQuery("genres", Strings.toCamelCase(movieTypes.toString())).boost(0))
-                    ).addField("title").addField("genres").addField("id").setFrom(page * itemsPerPage).setSize(itemsPerPage).setMinScore(minscore).setTypes("movie")
+                    ).addField("title").addField("tmdbId").addField("imdbId").addField("genres").addField("id").setFrom(page * itemsPerPage).setSize(itemsPerPage).setMinScore(minscore).setTypes("movie")
                     .execute().get();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
