@@ -15,9 +15,9 @@ public interface MovieSource {
 
     Movie getMovieByTitle(String title);
 
-    List<Movie> getMoviesWithGivenGenre(MovieType movieTypes, int page, int itemsPerPage) throws ExecutionException, InterruptedException;
+    List<Movie> getMoviesWithGivenGenre(MovieType movieTypes, int page, int itemsPerPage) ;
 
-    List<Movie> getMoviesWithGivenGenreAndMinimumNumberOfRatings(MovieType movieTypes, int minNumberOfRatings, int page, int itemsPerPage) throws ExecutionException, InterruptedException;
+    List<Movie> getMoviesWithGivenGenreAndMinimumNumberOfRatings(MovieType movieTypes, int minNumberOfRatings, int page, int itemsPerPage) ;
 
     List<Movie> getMoviesWithGivenGenreSortedByNumberOfVotes(MovieType movieTypes, int minNumberOfRatings, int page, int itemsPerPage);
 

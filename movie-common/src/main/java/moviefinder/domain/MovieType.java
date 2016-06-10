@@ -1,7 +1,5 @@
 package moviefinder.domain;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * Created by andrzej on 20.04.2016.
  */
@@ -28,8 +26,7 @@ public enum MovieType {
     DOCUMENTARY;
 
 
-
     public String getName() {
-        return StringUtils.capitalize(this.name().toLowerCase());
+        return (this.name().toLowerCase());
     }
 }
