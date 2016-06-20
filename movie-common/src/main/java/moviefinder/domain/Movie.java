@@ -12,9 +12,9 @@ public class Movie implements Serializable {
     private final long movieId;
     private final String title;
     private final Set<MovieType> movieTypes;
-    private float rating;
     private final long imdbId;
     private final long tmdbId;
+    private float rating;
 
     public Movie(long movieId, String title, Set<MovieType> movieTypes, long imdbId, long tmdbId) {
         this.movieId = movieId;
@@ -22,7 +22,9 @@ public class Movie implements Serializable {
         this.movieTypes = movieTypes;
         this.imdbId = imdbId;
         this.tmdbId = tmdbId;
+
     }
+
     public Movie(Set<MovieType> movieTypes, float rating, long movieId, String title, long imdbId, long tmdbId) {
         this.movieTypes = movieTypes;
         this.rating = rating;
@@ -30,6 +32,14 @@ public class Movie implements Serializable {
         this.title = title;
         this.imdbId = imdbId;
         this.tmdbId = tmdbId;
+    }
+
+    public long getImdbId() {
+        return imdbId;
+    }
+
+    public long getTmdbId() {
+        return tmdbId;
     }
 
     public long getMovieId() {
