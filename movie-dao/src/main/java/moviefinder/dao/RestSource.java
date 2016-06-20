@@ -108,12 +108,10 @@ public class RestSource implements MovieSource {
     }
 
     @Override
-    public Movie getMovieByTitle(String title) {
+    public List<Movie> getMovieByTitle(String title) {
 
         String s = getJsonNodeHttpResponse(title, "title");
-
-
-        return convertBodyToMovies(s).get(0);
+        return convertBodyToMovies(s);
 
 
     }

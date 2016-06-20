@@ -13,7 +13,7 @@ public interface MovieSource {
 
     Movie getMovieById(long movieId);
 
-    Movie getMovieByTitle(String title);
+    List<Movie> getMovieByTitle(String title);
 
     List<Movie> getMoviesWithGivenGenre(MovieType movieTypes, int page, int itemsPerPage) ;
 
