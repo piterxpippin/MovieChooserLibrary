@@ -12,11 +12,11 @@ public class Movie implements Serializable {
     private final long movieId;
     private final String title;
     private final Set<MovieType> movieTypes;
-    private final long imdbId;
-    private final long tmdbId;
+    private final String imdbId;
+    private final String tmdbId;
     private float rating;
 
-    public Movie(long movieId, String title, Set<MovieType> movieTypes, long imdbId, long tmdbId) {
+    public Movie(long movieId, String title, Set<MovieType> movieTypes, String imdbId, String tmdbId) {
         this.movieId = movieId;
         this.title = title;
         this.movieTypes = movieTypes;
@@ -25,7 +25,7 @@ public class Movie implements Serializable {
 
     }
 
-    public Movie(Set<MovieType> movieTypes, float rating, long movieId, String title, long imdbId, long tmdbId) {
+    public Movie(Set<MovieType> movieTypes, float rating, long movieId, String title, String imdbId, String tmdbId) {
         this.movieTypes = movieTypes;
         this.rating = rating;
         this.movieId = movieId;
@@ -34,11 +34,11 @@ public class Movie implements Serializable {
         this.tmdbId = tmdbId;
     }
 
-    public long getImdbId() {
+    public String getImdbId() {
         return imdbId;
     }
 
-    public long getTmdbId() {
+    public String getTmdbId() {
         return tmdbId;
     }
 

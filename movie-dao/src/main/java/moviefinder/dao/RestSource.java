@@ -140,9 +140,9 @@ public class RestSource implements MovieSource {
             for (int j = 0; j < genres.size(); j++) {
                 types.add(MovieType.valueOf(genres.get(j).getAsString().replace('-', '_').toUpperCase()));
             }
-            long imdbId = jsonElement.get("imdbId").getAsJsonArray().get(0).getAsLong();
+            String imdbId = jsonElement.get("imdbId").getAsJsonArray().get(0).getAsString();
             JsonArray tmdbId1 = jsonElement.get("tmdbId").getAsJsonArray();
-            long tmdbId = tmdbId1.size() > 0 ? tmdbId1.get(0).getAsLong() : 0;
+            String tmdbId = tmdbId1.size() > 0 ? tmdbId1.get(0).getAsString() : "";
             movies.add(new Movie(movieId, title, types, imdbId, tmdbId));
         }
 
